@@ -1,0 +1,59 @@
+networks:
+  internal:
+    internal: true
+  exposed:
+    internal: false
+
+secrets:
+  database-password:
+    file: code/secrets/DATABASE_PASSWORD
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: dev
+    ports:
+      - '${APP_HTTP_PORT-80}:8080'
+    volumes:
+      - source: code
+        target: /var/www/html
+        consistency: cached
+        read_only: false
+        type: bind
+    tmpfs:
+      - /var/www/html/var
+    secrets:
+      - source: database-password
+        target: database-password
+    networks:
+      - internal
+      - exposed
+
+  database:
+    image: docker.io/library/mysql:8-oracle
+    environment:
+      MYSQL_DATABASE: 'wowstat'
+      MYSQL_USER: 'rolls'
+      MYSQL_PASSWORD_FILE: '/run/secrets/database-password'
+      MYSQL_ONETIME_PASSWORD: yes
+      MYSQL_RANDOM_ROOT_PASSWORD: yes
+    secrets:
+      - database-password
+    networks:
+      - internal
+
+  dbadmin:
+    image: docker.io/library/phpmyadmin:5.1-apache
+    environment:
+      PMA_USER: 'rolls'
+      PMA_PASSWORD_FILE: '/run/secrets/database-password'
+      PMA_HOST: 'database'
+    secrets:
+      - database-password
+    networks:
+      - internal
+      - exposed
+    ports:
+      - '8080:80'
