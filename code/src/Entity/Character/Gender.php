@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Character;
 
-use App\Repository\RaceRepository;
+use App\Repository\GenderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RaceRepository::class)]
-class Race
+#[ORM\Entity(repositoryClass: GenderRepository::class)]
+class Gender
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,7 +18,7 @@ class Race
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\OneToMany(mappedBy: 'race', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'gender', targetEntity: Character::class)]
     private Collection $characters;
 
     public function __construct()
@@ -55,7 +55,7 @@ class Race
     {
         if (!$this->characters->contains($character)) {
             $this->characters[] = $character;
-            $character->setRace($this);
+            $character->setGender($this);
         }
 
         return $this;
@@ -65,8 +65,8 @@ class Race
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getRace() === $this) {
-                $character->setRace(null);
+            if ($character->getGender() === $this) {
+                $character->setGender(null);
             }
         }
 

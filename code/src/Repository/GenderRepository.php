@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\Gender;
+use App\Entity\Character\Gender;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
