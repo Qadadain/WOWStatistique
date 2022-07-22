@@ -21,6 +21,12 @@ class Race
     #[ORM\OneToMany(mappedBy: 'race', targetEntity: Character::class)]
     private Collection $characters;
 
+    #[ORM\Column(length: 75, unique:true)]
+    private ?string $wowId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picturePath = null;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -69,6 +75,30 @@ class Race
                 $character->setRace(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getWowId(): ?string
+    {
+        return $this->wowId;
+    }
+
+    public function setWowId(string $wowId): self
+    {
+        $this->wowId = $wowId;
+
+        return $this;
+    }
+
+    public function getPicturePath(): ?string
+    {
+        return $this->picturePath;
+    }
+
+    public function setPicturePath(?string $picturePath): self
+    {
+        $this->picturePath = $picturePath;
 
         return $this;
     }
