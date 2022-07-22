@@ -18,6 +18,12 @@ class Gender
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $wowId;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private string $picturePath;
+
     #[ORM\OneToMany(mappedBy: 'gender', targetEntity: Character::class)]
     private Collection $characters;
 
@@ -39,6 +45,30 @@ class Gender
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getWowId(): string
+    {
+        return $this->wowId;
+    }
+
+    public function setWowId(string $wowId): self
+    {
+        $this->wowId = $wowId;
+
+        return $this;
+    }
+
+    public function getPicturePath(): string
+    {
+        return $this->picturePath;
+    }
+
+    public function setPicturePath(string $picturePath): self
+    {
+        $this->picturePath = $picturePath;
 
         return $this;
     }

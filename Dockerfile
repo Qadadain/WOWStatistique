@@ -55,8 +55,10 @@ RUN apk add --no-cache --update nginx \
 COPY ./deploy/local.ini /usr/local/etc/php/conf.d/local.ini
 COPY ./deploy/conf.d/nginx.conf /etc/nginx/http.d/default.conf
 
-COPY --from=composer --chown=www-data /var/www/html /var/www/html
-COPY --from=npm --chown=www-data /code/public/build /var/www/html/public/build
+COPY --from=composer --chown=nginx /var/www/html /var/www/html
+COPY --from=npm --chown=nginx /code/public/build /var/www/html/public/build
+
+RUN chown nginx -R /var/www/html
 
 EXPOSE 8080
 RUN nginx -t
