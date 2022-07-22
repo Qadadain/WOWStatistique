@@ -18,7 +18,7 @@ class Gender
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    #[ORM\Column(type: 'string', length: 255, nullable: false, unique: true)]
     private string $wowId;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
