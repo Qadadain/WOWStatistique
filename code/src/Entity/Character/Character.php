@@ -37,6 +37,10 @@ class Character
     #[ORM\JoinColumn(nullable: false)]
     private Classe $classe;
 
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Faction $faction = null;
+
     public function getId(): int
     {
         return $this->id;
@@ -110,6 +114,18 @@ class Character
     public function setClasse(Classe $classe): self
     {
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    public function getFaction(): ?Faction
+    {
+        return $this->faction;
+    }
+
+    public function setFaction(?Faction $faction): self
+    {
+        $this->faction = $faction;
 
         return $this;
     }
