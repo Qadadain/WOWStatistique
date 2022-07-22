@@ -7,3 +7,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 /secrets
 /var/
+.env.local
