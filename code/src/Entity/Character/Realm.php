@@ -25,6 +25,9 @@ class Realm
     #[ORM\OneToMany(mappedBy: 'realm', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
+    #[ORM\Column(length: 125)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -85,6 +88,18 @@ class Realm
                 $character->setRealm(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
