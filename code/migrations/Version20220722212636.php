@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220722211944 extends AbstractMigration
+final class Version20220722212636 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,7 +23,7 @@ final class Version20220722211944 extends AbstractMigration
         $this->addSql('CREATE TABLE `character` (id INT AUTO_INCREMENT NOT NULL, region_id INT NOT NULL, realm_id INT NOT NULL, gender_id INT NOT NULL, race_id INT NOT NULL, classe_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_937AB03498260155 (region_id), INDEX IDX_937AB0349DFF5F89 (realm_id), INDEX IDX_937AB034708A0E0 (gender_id), INDEX IDX_937AB0346E59D40D (race_id), INDEX IDX_937AB0348F5EA509 (classe_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE classe (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, picture_path VARCHAR(255) DEFAULT NULL, wow_id VARCHAR(75) NOT NULL, UNIQUE INDEX UNIQ_8F87BF96D36FF841 (wow_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE gender (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, wow_id VARCHAR(255) NOT NULL, picture_path VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_C7470A42D36FF841 (wow_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE race (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, wow_id VARCHAR(75) NOT NULL, picture_path VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE race (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, wow_id VARCHAR(75) NOT NULL, picture_path VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_DA6FBBAFD36FF841 (wow_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE realm (id INT AUTO_INCREMENT NOT NULL, region_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_FA96DBDA98260155 (region_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE `character` ADD CONSTRAINT FK_937AB03498260155 FOREIGN KEY (region_id) REFERENCES region (id)');

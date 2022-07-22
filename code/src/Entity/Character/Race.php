@@ -21,7 +21,7 @@ class Race
     #[ORM\OneToMany(mappedBy: 'race', targetEntity: Character::class)]
     private Collection $characters;
 
-    #[ORM\Column(length: 75)]
+    #[ORM\Column(length: 75, unique: true)]
     private ?string $wowId = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -102,4 +102,5 @@ class Race
 
         return $this;
     }
+
 }
