@@ -24,6 +24,15 @@ class Region
     #[ORM\OneToMany(mappedBy: 'region', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
+    #[ORM\Column(length: 2)]
+    private string $tag;
+
+    #[ORM\Column]
+    private int $wowId;
+
+    #[ORM\Column(length: 255)]
+    private string $requestUrl;
+
     public function __construct()
     {
         $this->realms = new ArrayCollection();
@@ -103,6 +112,42 @@ class Region
                 $character->setRegion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTag(): string
+    {
+        return $this->tag;
+    }
+
+    public function setTag(string $tag): self
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    public function getWowId(): int
+    {
+        return $this->wowId;
+    }
+
+    public function setWowId(int $wowId): self
+    {
+        $this->wowId = $wowId;
+
+        return $this;
+    }
+
+    public function getRequestUrl(): string
+    {
+        return $this->requestUrl;
+    }
+
+    public function setRequestUrl(string $requestUrl): self
+    {
+        $this->requestUrl = $requestUrl;
 
         return $this;
     }

@@ -17,6 +17,22 @@ framework:
     php_errors:
         log: true
 
+
+    http_client:
+        scoped_clients:
+            wow.api:
+                base_uri: '%env(string:WOW_API_BASE_URL)%'
+                max_duration: 3
+                max_redirects: 1
+                retry_failed:
+                    max_retries: 0
+
+
+    serializer:
+        enabled: true
+        enable_annotations: true
+        name_converter: serializer.name_converter.camel_case_to_snake_case
+
 when@test:
     framework:
         test: true
