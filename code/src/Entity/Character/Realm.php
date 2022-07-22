@@ -22,7 +22,7 @@ class Realm
     #[ORM\JoinColumn(nullable: false)]
     private Region $region;
 
-    #[ORM\OneToMany(mappedBy: 'realm', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'realm', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
     public function __construct()

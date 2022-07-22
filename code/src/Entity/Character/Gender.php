@@ -24,7 +24,7 @@ class Gender
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $picturePath;
 
-    #[ORM\OneToMany(mappedBy: 'gender', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'gender', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
     public function __construct()

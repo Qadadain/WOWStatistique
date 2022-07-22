@@ -18,10 +18,10 @@ class Region
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Realm::class)]
+    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Realm::class, orphanRemoval: true)]
     private Collection $realms;
 
-    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
     public function __construct()
