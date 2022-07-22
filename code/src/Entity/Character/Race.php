@@ -18,7 +18,7 @@ class Race
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\OneToMany(mappedBy: 'race', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'race', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
     #[ORM\Column(length: 75, unique:true)]

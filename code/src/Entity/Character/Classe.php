@@ -18,7 +18,7 @@ class Classe
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
     private string $name;
 
-    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Character::class)]
+    #[ORM\OneToMany(mappedBy: 'classe', targetEntity: Character::class, orphanRemoval: true)]
     private Collection $characters;
 
     #[ORM\Column(length: 255, nullable: true)]
