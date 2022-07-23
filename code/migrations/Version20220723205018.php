@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220722215405 extends AbstractMigration
+final class Version20220723205018 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -26,7 +26,7 @@ final class Version20220722215405 extends AbstractMigration
         $this->addSql('CREATE TABLE gender (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, wow_id VARCHAR(255) NOT NULL, picture_path VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_C7470A42D36FF841 (wow_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE race (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, wow_id VARCHAR(75) NOT NULL, picture_path VARCHAR(255) DEFAULT NULL, UNIQUE INDEX UNIQ_DA6FBBAFD36FF841 (wow_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE realm (id INT AUTO_INCREMENT NOT NULL, region_id INT NOT NULL, name VARCHAR(255) NOT NULL, slug VARCHAR(125) NOT NULL, INDEX IDX_FA96DBDA98260155 (region_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE region (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, tag VARCHAR(2) NOT NULL, wow_id INT NOT NULL, request_url VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE `character` ADD CONSTRAINT FK_937AB03498260155 FOREIGN KEY (region_id) REFERENCES region (id)');
         $this->addSql('ALTER TABLE `character` ADD CONSTRAINT FK_937AB0349DFF5F89 FOREIGN KEY (realm_id) REFERENCES realm (id)');
         $this->addSql('ALTER TABLE `character` ADD CONSTRAINT FK_937AB034708A0E0 FOREIGN KEY (gender_id) REFERENCES gender (id)');

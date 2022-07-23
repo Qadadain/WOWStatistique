@@ -33,10 +33,17 @@ class Region
     #[ORM\Column(length: 255)]
     private string $requestUrl;
 
-    public function __construct()
+    public function __construct(
+        $name,
+        $tag,
+        $wowId,
+        $requestUrl,
+    )
     {
-        $this->realms = new ArrayCollection();
-        $this->characters = new ArrayCollection();
+        $this->name = $name;
+        $this->tag = $tag;
+        $this->wowId = $wowId;
+        $this->requestUrl = $requestUrl;
     }
 
     public function getId(): int

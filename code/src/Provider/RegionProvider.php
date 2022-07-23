@@ -17,7 +17,6 @@ final class RegionProvider
     public function __construct(
         private readonly HttpClientInterface $wowApi,
         private readonly LoggerInterface $logger,
-        private readonly SerializerInterface $serializer,
         private readonly string $wowApiLocale,
     ) {
     }
@@ -37,7 +36,6 @@ final class RegionProvider
                     ]
                 ]
             )->toArray();
-            dd($response);
         } catch (\Throwable $exception) {
             $this->logger->error('Unable to retrieve advice articles from the api', [
                 'message' => $exception->getMessage(),
